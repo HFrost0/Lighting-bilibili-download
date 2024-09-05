@@ -369,7 +369,7 @@ def _parse_bv_html(url, html: str) -> VideoInfo:
         pages.append(Page(p_name=p_name, p_url=p_url))
     # extract dash and flv_url
     dash, other = None, []
-    play_info = re.search('<script>window.__playinfo__=({.*})</script><script>', html).groups()[0]
+    play_info = re.search('<script>window.__playinfo__=({.*?})</script><script>', html).groups()[0]
     play_info = json.loads(play_info)['data']
     try:
         dash = Dash.from_dict(play_info)
